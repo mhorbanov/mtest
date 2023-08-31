@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+
+option go_package = ".";
+
+
+message Account {
+    string account_id = 1;
+    string requested_by = 2;
+    string timestamp = 4;
+    string beat_id = 5;
+    string PAPI_group = 7;
+    string environment = 8;
+    repeated Resource resources = 9;
+    repeated string requested_roles = 11;
+}
+
+message Resource {
+    string account_id = 1;
+    string resource_id = 2;
+    string requested_by = 3;
+    string requested_timestamp = 5;
+    string last_updated = 6;
+    string resource_type = 7;
+    string resource_name = 8;
+    string resource_arn = 9;
+    bool fulfilled = 10;
+}
