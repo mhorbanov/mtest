@@ -1,0 +1,33 @@
+name: test github token
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  # Optional: allow read access to pull request. Use with `only-new-issues` option.
+  # pull-requests: read
+
+#    repository: my-org/my-private-tools
+jobs:
+  test-token: 
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout private tools
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+    - name: git commit and push
+      run: |
+        git config --global user.name "GitHub Test"
+        git config --global user.email "actions@github.com" 
+        echo "test123" >> test.txt
+        git add test.txt
+        git commit -m "test commit"
+        git push origin main
+    
