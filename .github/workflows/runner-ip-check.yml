@@ -9,7 +9,13 @@ permissions:
 jobs:
   ip-check:
     name: print runner egress IP
-    runs-on: bayer-int-external-linux
+    # runs-on: [self-hosted, linux, external-k8s]
+    # runs-on: [ubuntu-24.04]
+    runs-on: [external-k8s-v2]
+    # runs-on: [internal-k8s-v2]
+    # runs-on: [bayer-int-internal-linux]
+    # runs-on: [bayer-int-external-linux]
+    # runs-on: [ubuntu-latest]
     steps:
       - name: Print public IPv4
         run: curl -L ipconfig.me/ip4
