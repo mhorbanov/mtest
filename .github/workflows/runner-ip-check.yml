@@ -1,0 +1,15 @@
+name: runner-ip-check
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ip-check:
+    name: print runner egress IP
+    runs-on: bayer-int-external-linux
+    steps:
+      - name: Print public IPv4
+        run: curl -L ipconfig.me/ip4
